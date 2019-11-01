@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
@@ -16,8 +16,8 @@ namespace GC2Toolkit
         string TuneFilePakAdd = "";
         string SkinPakAdd = "";
 
-        public int MaxStage = 400;
-        public int MaxAvater = 90;
+        public int MaxStage = 600;
+        public int MaxAvater = 150;
 
 		private string CacheFolder = "Caches\\";
 		private bool nonWindows = false;
