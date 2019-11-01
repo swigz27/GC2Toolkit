@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net;
@@ -37,7 +37,7 @@ namespace GC2Toolkit
             proc = new HttpListener();
             try
             {
-                proc.Prefixes.Add("http://*:80/");
+                proc.Prefixes.Add("http://*:1234/");
                 proc.Start();
             }
             catch(Exception e)
@@ -171,7 +171,10 @@ namespace GC2Toolkit
 
         private void GatherFile(string ReqFile,string ReqParam,HttpListenerRequest SourceReq)
         {
-            HttpWebRequest ServerRequest = WebRequest.Create(new Uri("http://gc2.gczero.com/" + ReqFile + "?" + ReqParam)) as HttpWebRequest;
+            HttpWebRequest ServerRequest = WebRequest.Create(new Uri("https://gc2018.gczero.com/" + ReqFile + "?" + ReqParam)) as HttpWebRequest;
+
+            ServerRequest.ServerCertificateValidationCallback = delegate { return true; }; 
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
             for(int i = 0;i < SourceReq.Headers.Count; i++)
             {
