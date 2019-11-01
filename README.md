@@ -1,39 +1,46 @@
 # GC2Toolkit
-Used to be a GC2iOS Song Unlocker
+Used to be a GC2 Song Unlocker
 
-Since Taito implemented HTTPS in iOS Client, this tool becomes obsolete(but it may works, see below.)
+# Build
+Download the repo and run `build.bat`  
 
-# How to use it (in 2019) ?
-You will need to do some MITM stuff(faking certs, setup own server, re-route server address by hosts, etc.)
+# How to use it?
+1. Download GC2Toolkit.exe from [release page](https://github.com/rogeraabbccdd/GC2Toolkit/releases).
+2. Download [Fiddler](https://www.telerik.com/fiddler).
+3. Setting up Fiddler.
+    1. Open Fiddler and select `Tools -> Options`
+    2. Choose the `HTTPS` tab
+    3. Check `Capture HTTPS CONNECTs`
+    4. Uncheck `Decrypt HTTPS traffic`
+    5. Choose the `Connections` tab
+    6. Select the `Allow remote computers to connect` checkbox to enable the setting
+    7. Restart Fiddler in order the changes to take effect  
 
-### With mitmproxy
-1.Set up mitmproxy
+  ![Fiddler](screenshots/fiddler1.png)
 
-2.filter all request to gc2018.gczero.com (it's a https address)
-
-3.game will freeze when started(awaiting for reply, and no timeout)
-  and you will get a request(in mitmproxy) accessing start.php or sync.php
+4. Setting up mobile device
+    1. Make sure your computer and mobile device are on the same WiFi network.
+    2. Edit your current WiFi settings of mobile device.
+    3. Choose `Manual` from the `Proxy` dropdown list
+    4. Type your IP address in the Proxy host name field
+    5. Type the Fiddler listening port (`8888` by default) in the `Proxy port` field
+    6. Click `Save` to apply changes
   
-4.dump the request body in mitmproxy
+  ![wifi proxy](screenshots/wifiproxy.jpg)
 
-5.Run in cmd or bash
+5. Setting up AutoResponder
+    1. Go to `AutoResponder` tab in Fiddler
+    2. Click `Add Rule`
+    3. Add the following text to your rule
+      ```
+      regex:http://gc2018.gczero.com/(.*)$
+      http://YOUR_IP:1234/$1
+      ```
+    4. Click `Save`
+    5. Check `Enable rules`
+    6. Check `Unmatched requests passthrough` to prevent Fiddler block your other network requests.
 
-    (Windows)GC2Toolkit.exe manual *path to your request body*
-    
-    (non-Windows) mono GC2Toolkit.exe manual *path to your request body*
-
-6.send *path to your request body*.output as response back to your game.
-
-7.If your game boots, you are now full-unlocked.
-
-
-### With Home-made servers
-1.Change port to 443(in code) and bind a certificate at that port
-
-  (in windows, and that step can't be done in code so you should do it yourself)
+  ![autoresponder](screenshots/autoresponder.png)
   
-2.Route gc2018.gczero.com to your server.
-
-3.your game will request to your server now
-
-  and everythine should be fine(if HTTPListener can handle HTTPS and gc2.gczero.com is still working)
+6. Start GC2Toolkit.exe.
+7. Satrt your game on mobile device.
