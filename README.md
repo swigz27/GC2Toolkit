@@ -1,10 +1,10 @@
 # GC2Toolkit
-Used to be a GC2 Song Unlocker
+GC2 Song Unlocker
 
 # Build
 Download the repo and run `build.bat`  
 
-# How to use it?
+# How to use it (Android)?
 1. Download GC2Toolkit.exe from [release page](https://github.com/rogeraabbccdd/GC2Toolkit/releases).
 2. Download [Fiddler](https://www.telerik.com/fiddler).
 3. Setting up Fiddler.
@@ -41,6 +41,9 @@ Download the repo and run `build.bat`
     6. Check `Unmatched requests passthrough` to prevent Fiddler block your other network requests.
 
   ![autoresponder](screenshots/autoresponder.png)
-  
-6. Start GC2Toolkit.exe.
-7. Satrt your game on mobile device.
+ 
+6. Disable PC proxy
+    1. open `regedit.exe`
+    2. Change `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings\ProxyEnable` to 0
+7. Start GC2Toolkit.exe.
+8. Satrt your game on mobile device.
