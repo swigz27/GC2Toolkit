@@ -6,7 +6,7 @@ Download the repo and run `build.bat`
 
 # How to use it?
 ## Download tools
-- Download GC2Toolkit.exe from [release page](https://github.com/rogeraabbccdd/GC2Toolkit/releases).
+- Download GC2Toolkit.exe from [release page](https://github.com/SwigS-27/GC2Toolkit/releases/).
 - Download [Fiddler](https://www.telerik.com/fiddler).
 
 ## Setting up GC2toolkit.
